@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
-  
+  before_action :authenticate_user!, only: [:new, :create]
+
   def index
     @teams = Team.all
   end
@@ -11,6 +11,7 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(team_params)
+    @team.user = current_user
 
     if @team.save
       redirect_to :teams
