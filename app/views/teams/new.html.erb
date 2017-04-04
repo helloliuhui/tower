@@ -2,6 +2,14 @@
     <h2>新增团队</h2>
 
     <hr>
+    <% if @team.errors.any? %>
+    <ul>
+      <% @team.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+    <% end %>
+
     <%= form_for @team do |f| %>
 
     标题

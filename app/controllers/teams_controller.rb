@@ -9,9 +9,12 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(team_params)
-    @team.save
 
-    redirect_to :teams
+    if @team.save
+      redirect_to :teams
+    else
+      render :new
+    end
   end
 
   def edit
@@ -20,9 +23,12 @@ class TeamsController < ApplicationController
 
   def update
     @team = Team.find(params[:id])
-    @team.update(team_params)
 
-    redirect_to :teams
+    if @team.update(team_params)
+      redirect_to :teams
+    else
+      render :edit
+    end
   end
 
   def destroy
