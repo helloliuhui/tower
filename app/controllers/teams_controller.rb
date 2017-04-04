@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @teams = Team.all
@@ -22,10 +22,19 @@ class TeamsController < ApplicationController
 
   def edit
     @team = Team.find(params[:id])
+
+    if current_user != @team.user
+      redirect_to root_path, alert: "You have no permission"
+    end
+
   end
 
   def update
     @team = Team.find(params[:id])
+
+    if current_user != @team.user
+      redirect_to root_path, alert: "You have no permission"
+    end
 
     if @team.update(team_params)
       redirect_to :teams
@@ -36,8 +45,12 @@ class TeamsController < ApplicationController
 
   def destroy
     @team = Team.find(params[:id])
-    @team.destroy
 
+    if current_user != @team.user
+      redirect_to root_path, alert: "You have no permission"
+    end
+
+    @team.destroy
     redirect_to :teams
   end
 
