@@ -10,8 +10,30 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
     @team.save
-    
+
     redirect_to :teams
+  end
+
+  def edit
+    @team = Team.find(params[:id])
+  end
+
+  def update
+    @team = Team.find(params[:id])
+    @team.update(team_params)
+
+    redirect_to :teams
+  end
+
+  def destroy
+    @team = Team.find(params[:id])
+    @team.destroy
+
+    redirect_to :teams
+  end
+
+  def show
+    @team = Team.find(params[:id])
   end
 
   private
