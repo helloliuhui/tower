@@ -1,9 +1,12 @@
 <div class="col-md-12">
-  <% if current_user && current_user != @team.user %>
   <div class="group">
+    <% if current_user && current_user == @team.user %>
     <%= link_to("Edit", edit_team_path(@team), class: "btn btn-primary pull-right")%>
+    <% end %>
+    <%= link_to("New Project", new_team_project_path(@team), class: "btn btn-default pull-right")%>
   </div>
-  <% end %>
+
+
   <h2><%= @team.title %></h2>
   <p><%= @team.description %></p>
 </div>
