@@ -1,0 +1,27 @@
+<div class="col-md-12">
+
+  <h2 class="text-center"> 我参加的项目 </h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th> title </th>
+        <th> Team Name </th>
+        <th> Last Update </th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @projects.each do |project| %>
+        <tr>
+          <td> <%= project.title %> </td>
+          <td> <%= project.team.title %> </td>
+          <td> <%= project.updated_at %> </td>
+          <td> <%= link_to('Edit', edit_team_project_path(project.team, project), class: "btn btn-default btn-xs") %></td>
+          <td> <%= link_to('Delete', team_project_path(project.team, project), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default btn-xs") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
