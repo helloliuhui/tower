@@ -1,0 +1,28 @@
+<div class="col-md-12">
+
+  <h2 class="text-center"> 我加入的团队 </h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th> # </th>
+        <th> Title </th>
+        <th> Description </th>
+        <th> Project Count </th>
+        <th> Last Update </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @teams.each do |team| %>
+        <tr>
+          <td> # </td>
+          <td> <%= link_to(team.title, team_path(team)) %> </td>
+          <td> <%= team.description %> </td>
+          <td> <%= team.projects.count %> </td>
+          <td> <%= team.updated_at %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
