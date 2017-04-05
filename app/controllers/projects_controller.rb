@@ -19,6 +19,27 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def edit
+    @team = Team.find(params[:team_id])
+    @project = Project.find(params[:id])
+  end
+
+  def update
+    @team = Team.find(params[:team_id])
+    @project = Project.find(params[:id])
+    @project.update(project_params)
+
+    redirect_to team_path(@team)
+  end
+
+  def destroy
+    @team = Team.find(params[:team_id])
+    @project = Project.find(params[:id])
+    @project.destroy
+
+    redirect_to team_path(@team)
+  end
+
   private
 
   def project_params

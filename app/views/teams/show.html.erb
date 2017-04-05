@@ -27,6 +27,7 @@
           <th>项目名称</th>
           <th>创建者</th>
           <th>创建时间</th>
+          <th colspan="2">操作</th>
         </tr>
       </thead>
       <tbody>
@@ -35,6 +36,8 @@
             <td><%= project.title %></td>
             <td><%= project.user.email %></td>
             <td><%= project.created_at %></td>
+            <td> <%= link_to('Edit', edit_team_project_path(project.team, project), class: "btn btn-default btn-xs") %></td>
+            <td> <%= link_to('Delete', team_project_path(project.team, project), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default btn-xs") %></td>
           </tr>
         <% end %>
       </tbody>
