@@ -39,7 +39,7 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
-    @projects = Project.all
+    @projects = @team.projects.order("created_at DESC")
   end
 
   private
