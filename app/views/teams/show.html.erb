@@ -4,8 +4,10 @@
     <span class="pull-right">
       <% if current_user && current_user.is_member_of?(@team) %>
         <label class="label label-success"> 团队成员 </label>
+        <%= link_to("Quit Team", quit_team_path(@team), method: :post, class: "btn btn-default") %>
       <% else %>
         <label class="label label-warning"> 不是团队成员 </label>
+        <%= link_to("Join Team", join_team_path(@team), method: :post, class: "btn btn-default") %>
       <% end %>
     </span>
 

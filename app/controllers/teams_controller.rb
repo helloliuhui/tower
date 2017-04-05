@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :join, :quit]
   before_action :find_team_and_check_permission, only: [:edit, :update, :destroy]
 
   def index
@@ -41,6 +41,21 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @projects = @team.projects.recent
   end
+
+  def join
+    @team = Team.find(params[:id])
+    current_user.join!(@team)
+
+    redirect_to team_path(@team)
+  end
+
+  def quit
+    @team = Team.find(params[:id])
+      current_user.quit!(@team)
+
+    redirect_to team_path(@team)
+  end
+
 
   private
 
