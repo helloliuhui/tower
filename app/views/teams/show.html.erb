@@ -9,4 +9,24 @@
 
   <h2><%= @team.title %></h2>
   <p><%= @team.description %></p>
+
+    <table class="table">
+      <thead>
+       <tr>
+          <th>项目名称</th>
+          <th>创建者</th>
+          <th>创建时间</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @projects.each do |project| %>
+          <tr>
+            <td><%= project.title %></td>
+            <td><%= project.user.email %></td>
+            <td><%= project.created_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
 </div>
