@@ -15,6 +15,7 @@ class TeamsController < ApplicationController
     @team.user = current_user
 
     if @team.save
+      current_user.join!(@team)
       redirect_to :teams
     else
       render :new
