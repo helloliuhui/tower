@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :teams
   has_many :projects
+  has_many :todos
 
   has_many :team_relationships
   has_many :participated_teams, :through => :team_relationships, :source => :team

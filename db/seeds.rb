@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+puts "建立一个账号"
+u = User.new
+u.email = "admin@test.com"
+u.password = '111111'
+u.password_confirmation = '111111'
+u.save
+
+puts "建立一个团队"
+Team.create!(title: "彩程", description: "彩程团队", user_id: 1)

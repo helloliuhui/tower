@@ -1,0 +1,34 @@
+<div class="col-md-12">
+  <div class="group">
+    <% if current_user && current_user == @project.user %>
+    <%= link_to("Edit", edit_team_project_path(@project), class: "btn btn-primary pull-right")%>
+    <% end %>
+    <%= link_to("New Todo", new_team_project_todo_path(@team, @project), class: "btn btn-default pull-right")%>
+  </div>
+
+
+  <h2><%= @project.title %></h2>
+
+  <table class="table">
+    <thead>
+     <tr>
+        <th>任务名称</th>
+        <th>创建者</th>
+        <th>创建时间</th>
+        <th colspan="2">操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @todos.each do |todo| %>
+        <tr>
+          <td><%= link_to(todo.title, team_project_todo_path(@team, @project,todo)) %></td>
+          <td><%= todo.created_at %></td>
+          <td> <%= link_to('Edit', edit_team_project_todo_path(@team, @project, todo), class: "btn btn-default btn-xs") %></td>
+          <td> <%= link_to('Delete', team_project_todo_path(@team, @project, todo), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default btn-xs") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+</div>

@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :teams do
-    resources :projects
+    resources :projects do
+      resources :todos
+    end
+    
     member do
       post :join
       post :quit

@@ -40,6 +40,12 @@ class ProjectsController < ApplicationController
     redirect_to team_path(@team)
   end
 
+  def show
+    @team = Team.find(params[:team_id])
+    @project = Project.find(params[:id])
+    @todos = @project.todos
+  end
+
   private
 
   def project_params

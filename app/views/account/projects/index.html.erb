@@ -15,7 +15,7 @@
     <tbody>
       <% @projects.each do |project| %>
         <tr>
-          <td> <%= project.title %> </td>
+          <td><%= link_to(project.title, account_project_path(project)) %></td>
           <td> <%= project.team.title %> </td>
           <td> <%= project.updated_at %> </td>
           <td> <%= link_to('Edit', edit_team_project_path(project.team, project), class: "btn btn-default btn-xs") %></td>
