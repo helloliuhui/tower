@@ -1,0 +1,27 @@
+<div class="col-md-12">
+
+  <h2 class="text-center">  我的任务 </h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th> title </th>
+        <th> Project Name </th>
+        <th> Last Update </th>
+        <th colspan="2">操作</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @todos.each do |todo| %>
+        <tr>
+          <td> <%= todo.title %></td>
+          <td> <%= todo.project.title %> </td>
+          <td> <%= todo.updated_at %> </td>
+          <td> <%= link_to('Edit', edit_team_project_todo_path(todo.team, todo.project, todo), class: "btn btn-default btn-xs") %></td>
+          <td> <%= link_to('Delete', team_project_todo_path(todo.team, todo.project, todo), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default btn-xs") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
