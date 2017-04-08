@@ -3,6 +3,8 @@ class Todo < ApplicationRecord
   belongs_to :team
   belongs_to :project
 
+  has_many :comments
+
   def finish!
     self.update_columns(is_finished: true )
   end

@@ -53,6 +53,7 @@ class TodosController < ApplicationController
     @team = Team.find(params[:team_id])
     @project = Project.find(params[:project_id])
     @todo = Todo.find(params[:id])
+    @comments = @todo.comments
   end
 
   def finish
