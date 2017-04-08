@@ -12,6 +12,9 @@ class User < ApplicationRecord
   has_many :team_relationships
   has_many :participated_teams, :through => :team_relationships, :source => :team
 
+  has_many :accesses
+  has_many :participated_projects, :through => :accesses, :source => :project
+
   def is_member_of?(team)
     participated_teams.include?(team)
   end
