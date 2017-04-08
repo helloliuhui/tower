@@ -16,7 +16,7 @@ class TodosController < ApplicationController
     @todo.project = @project
 
     @todo.save
-    redirect_to team_project_path(@team, @project)
+    redirect_to team_project_path(@team, @project), notice: "创建成功"
   end
 
   def edit
@@ -36,7 +36,7 @@ class TodosController < ApplicationController
 
     @todo.update(todo_params)
 
-    redirect_to team_project_path(@team, @project)
+    redirect_to team_project_path(@team, @project), notice: "更新成功"
   end
 
   def destroy
@@ -46,7 +46,7 @@ class TodosController < ApplicationController
 
     @todo.destroy
 
-    redirect_to team_project_path(@team, @project)
+    redirect_to team_project_path(@team, @project), notice: "删除成功"
   end
 
   def show
@@ -62,7 +62,7 @@ class TodosController < ApplicationController
 
     @todo.finish!
 
-    redirect_to team_project_path(@team, @project)
+    redirect_to team_project_path(@team, @project), notice: "完成任务"
   end
 
   def unfinish
@@ -72,12 +72,12 @@ class TodosController < ApplicationController
 
     @todo.unfinish!
 
-    redirect_to team_project_path(@team, @project)
+    redirect_to team_project_path(@team, @project), notice: "取消完成任务"
   end
 
   private
 
   def todo_params
-    params.require(:todo).permit(:title)
+    params.require(:todo).permit(:title, :finisher, :deadline)
   end
 end

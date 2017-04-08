@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170407121954) do
+ActiveRecord::Schema.define(version: 20170408071551) do
 
   create_table "projects", force: :cascade do |t|
     t.text     "title"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20170407121954) do
     t.integer  "team_id"
     t.datetime "deadline"
     t.boolean  "is_finished", default: false
+    t.string   "finisher"
   end
 
   create_table "users", force: :cascade do |t|

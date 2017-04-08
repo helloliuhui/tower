@@ -15,6 +15,7 @@
         <th>任务名称</th>
         <th>创建者</th>
         <th>创建时间</th>
+        <th>完成者</th>
         <th colspan="2">操作</th>
       </tr>
     </thead>
@@ -24,6 +25,7 @@
           <td><%= link_to(todo.title, team_project_todo_path(@team, @project,todo)) %></td>
           <td><%= todo.user.email %></td>
           <td><%= todo.created_at %></td>
+          <td><%= todo.finisher %></td>
           <td> <%= link_to('Finish', team_project_todo_finish_path(@team, @project, todo), class: "btn btn-default btn-xs") %></td>
           <td> <%= link_to('UnFinish', team_project_todo_unfinish_path(@team, @project, todo)) %></td>
           <td> <%= link_to('Edit', edit_team_project_todo_path(@team, @project, todo), class: "btn btn-default btn-xs") %></td>
