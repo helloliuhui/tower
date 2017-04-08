@@ -24,7 +24,14 @@ Rails.application.routes.draw do
     resources :events
   end
 
-  resources :events
+  resources :events do
+    member do
+      post :create
+      post :delete
+      post :finish
+      post :update_finisher
+    end
+  end
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

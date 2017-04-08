@@ -4,28 +4,32 @@ class Event < ApplicationRecord
   include AASM
 
     aasm do
-      state :unfinished, initial: true
-      state :paid
-      state :shipping
-      state :shipped
-      state :order_cancelled
-      state :good_returned
+      state :created, initial: true
+      state :deleted
+      state :finished
+      state :assigned
+      state :update_finisher
+      state :update_deadline
+      state :commented
 
-
-      event :make_payment do
-        transitions from: :order_placed, to: :paid
+      event :create_todo! do
+        transitions from: :created, to: :created
       end
 
-      event :ship do
-        transitions from: :paid,         to: :shipping
+      event :delete_todo! do
+        transitions from: :created, to: :deleted
       end
 
-      event :deliver do
-        transitions from: :shipping,     to: :shipped
+      event :finish_todo! do
+        transitions from: :created,     to: :finished
       end
 
-      event :return_good do
-        transitions from: :shipped,      to: :good_returned
+      event :update_finisher! do
+        transitions from: :created,      to: :update_finisher
+      end
+
+      event :update_deadline! do
+        transitions from: :created,      to: :update_deadline
       end
 
       event :cancel_order do

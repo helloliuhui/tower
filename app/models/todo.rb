@@ -13,4 +13,5 @@ class Todo < ApplicationRecord
     self.update_columns(is_finished: false )
   end
 
+
 end

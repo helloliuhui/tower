@@ -17,7 +17,25 @@
         <tr>
           <td> <%= event.updated_at %> </td>
           <td> <%= event.user.email %> </td>
-          <td> <%= event.aasm_state %> </td>
+          <td>
+            <% case event.aasm_state %>
+              <% when "created" %>
+                <span class="label label-default">创建了</span>
+              <% when "deleted" %>
+                <span class="label label-default">删除了</span>
+              <% when "finished" %>
+                <span class="label label-default">完成了</span>
+              <% when "assigned" %>
+                <span class="label label-default">指派了</span>
+              <% when "update_finisher" %>
+                <span class="label label-default">修改了任务完成者</span>
+              <% when "updated_deadline" %>
+                <span class="label label-default">修改了任务完成时间</span>
+              <% when "commented" %>
+                <span class="label label-default">评论了</span>
+
+             <% end %>
+           </td>
           <td> <%= link_to(event.title, event_path(event)) %></td>
         </tr>
       <% end %>
