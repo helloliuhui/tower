@@ -20,19 +20,19 @@
           <td>
             <% case event.aasm_state %>
               <% when "created" %>
-                <span class="label label-default">创建了</span>
+                <span class="label label-default">创建了任务</span>
               <% when "deleted" %>
-                <span class="label label-default">删除了</span>
+                <span class="label label-default">删除了任务</span>
               <% when "finished" %>
-                <span class="label label-default">完成了</span>
+                <span class="label label-default">完成了任务</span>
               <% when "assigned" %>
                 <span class="label label-default">指派了</span>
               <% when "update_finisher" %>
                 <span class="label label-default">修改了任务完成者</span>
-              <% when "updated_deadline" %>
+              <% when "update_deadline" %>
                 <span class="label label-default">修改了任务完成时间</span>
               <% when "commented" %>
-                <span class="label label-default">评论了</span>
+                <span class="label label-default">评论了任务</span>
 
              <% end %>
            </td>

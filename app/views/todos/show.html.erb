@@ -1,7 +1,7 @@
 <div class="col-md-12">
   <div class="group">
     <% if current_user && current_user == @project.user %>
-    <%= link_to("Edit", edit_team_project_todo_path(@todo), class: "btn btn-primary pull-right")%>
+    <%= link_to("Edit", edit_team_project_todo_path(@team, @project,@todo), class: "btn btn-primary pull-right")%>
     <% end %>
     <%= link_to("New Comment", new_team_project_todo_comment_path(@team, @project, @todo), class: "btn btn-default pull-right")%>
   </div>

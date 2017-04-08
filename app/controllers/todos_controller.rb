@@ -4,7 +4,6 @@ class TodosController < ApplicationController
     @team = Team.find(params[:team_id])
     @project = Project.find(params[:project_id])
     @todo = Todo.new
-    @event = Event.new
   end
 
   def create
@@ -75,6 +74,7 @@ class TodosController < ApplicationController
       @event.title = @todo.title
       @event.user = current_user
       @event.destroy_todo!
+      @event.save
       redirect_to team_project_path(@team, @project), notice: "删除成功"
     else
       render :new
@@ -100,8 +100,8 @@ class TodosController < ApplicationController
       @event.title = @todo.title
       @event.user = current_user
       @event.finish_todo!
-      @todo.destroy
-      redirect_to team_project_path(@team, @project), notice: "完成任务"
+      @event.save
+      redirect_to team_project_path(@team, @project), notice: "完成了任务"
     else
       render :new
     end

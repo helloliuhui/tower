@@ -16,7 +16,7 @@ class Event < ApplicationRecord
         transitions from: :created, to: :created
       end
 
-      event :delete_todo! do
+      event :destroy_todo! do
         transitions from: :created, to: :deleted
       end
 
@@ -29,11 +29,11 @@ class Event < ApplicationRecord
       end
 
       event :update_deadline! do
-        transitions from: :created,      to: :update_deadline
+        transitions from: :update_finisher,      to: :update_deadline
       end
 
-      event :cancel_order do
-        transitions from: [:order_placed, :paid], to: :order_cancelled
+      event :comment_todo do
+        transitions from: :created, to: :commented
       end
     end
 

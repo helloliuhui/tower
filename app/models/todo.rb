@@ -13,5 +13,6 @@ class Todo < ApplicationRecord
     self.update_columns(is_finished: false )
   end
 
+  validates :title, presence: true
 
 end
