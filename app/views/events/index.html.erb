@@ -1,0 +1,26 @@
+<div class="col-md-12">
+
+  <h2 class="text-center">  动态 </h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>  </th>
+        <th> user </th>
+        <th> status </th>
+        <th> title </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @events.each do |event| %>
+        <tr>
+          <td> <%= event.updated_at %> </td>
+          <td> <%= event.user.email %> </td>
+          <td> <%= event.aasm_state %> </td>
+          <td> <%= link_to(event.title, event_path(event)) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

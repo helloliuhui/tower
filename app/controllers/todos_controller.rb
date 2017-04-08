@@ -4,6 +4,7 @@ class TodosController < ApplicationController
     @team = Team.find(params[:team_id])
     @project = Project.find(params[:project_id])
     @todo = Todo.new
+    @event = Event.new
   end
 
   def create
@@ -15,8 +16,16 @@ class TodosController < ApplicationController
     @todo.team = @team
     @todo.project = @project
 
-    @todo.save
-    redirect_to team_project_path(@team, @project), notice: "创建成功"
+    if @todo.save
+      @event = Event.new
+      @event.todo_id = @todo.id
+      @event.title = @todo.title
+      @event.user = current_user
+      @event.save
+      redirect_to team_project_path(@team, @project), notice: "创建成功"
+    else
+      render :new
+    end
   end
 
   def edit
@@ -80,5 +89,9 @@ class TodosController < ApplicationController
 
   def todo_params
     params.require(:todo).permit(:title, :finisher, :deadline)
+  end
+
+  def event_params
+    params.require(:event).permit(:user_id, :todo_id)
   end
 end
