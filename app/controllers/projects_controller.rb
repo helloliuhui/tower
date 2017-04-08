@@ -46,6 +46,22 @@ class ProjectsController < ApplicationController
     @todos = @project.todos
   end
 
+  def join
+    @team = Team.find(params[:team_id])
+    @project = Project.find(params[:id])
+    current_user.join!(@project)
+
+    redirect_to team_project_path(@team, @project)
+  end
+
+  def quit
+    @team = Team.find(params[:team_id])
+    @project = Project.find(params[:id])
+    current_user.quit!(@project)
+
+    redirect_to team_project_path(@team, @project)
+  end
+
   private
 
   def project_params

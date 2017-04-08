@@ -26,4 +26,9 @@ class User < ApplicationRecord
   def quit!(team)
     participated_teams.delete(team)
   end
+
+  def is_member_of?(project)
+    participated_projects.include?(project)
+  end
+
 end

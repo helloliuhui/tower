@@ -1,5 +1,13 @@
 <div class="col-md-12">
   <div class="group">
+    <span class="pull-right">
+      <% if current_user && current_user.is_member_of?(@project) %>
+        <label class="label label-success"> 项目组成员 </label>
+      <% else %>
+        <label class="label label-warning"> 项目组成员 </label>
+      <% end %>
+    </span>
+
     <% if current_user && current_user == @project.user %>
     <%= link_to("Edit", edit_team_project_path(@project), class: "btn btn-primary pull-right")%>
     <% end %>
