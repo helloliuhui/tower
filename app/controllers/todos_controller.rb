@@ -55,6 +55,26 @@ class TodosController < ApplicationController
     @todo = Todo.find(params[:id])
   end
 
+  def finish
+    @team = Team.find(params[:team_id])
+    @project = Project.find(params[:project_id])
+    @todo = Todo.find(params[:todo_id])
+
+    @todo.finish!
+
+    redirect_to team_project_path(@team, @project)
+  end
+
+  def unfinish
+    @team = Team.find(params[:team_id])
+    @project = Project.find(params[:project_id])
+    @todo = Todo.find(params[:todo_id])
+
+    @todo.unfinish!
+
+    redirect_to team_project_path(@team, @project)
+  end
+
   private
 
   def todo_params

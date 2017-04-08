@@ -22,7 +22,10 @@
       <% @todos.each do |todo| %>
         <tr>
           <td><%= link_to(todo.title, team_project_todo_path(@team, @project,todo)) %></td>
+          <td><%= todo.user.email %></td>
           <td><%= todo.created_at %></td>
+          <td> <%= link_to('Finish', team_project_todo_finish_path(@team, @project, todo), class: "btn btn-default btn-xs") %></td>
+          <td> <%= link_to('UnFinish', team_project_todo_unfinish_path(@team, @project, todo)) %></td>
           <td> <%= link_to('Edit', edit_team_project_todo_path(@team, @project, todo), class: "btn btn-default btn-xs") %></td>
           <td> <%= link_to('Delete', team_project_todo_path(@team, @project, todo), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default btn-xs") %></td>
         </tr>

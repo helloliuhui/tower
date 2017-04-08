@@ -11,6 +11,7 @@
               <li> <%= link_to("My Teams", account_teams_path) %></li>
               <li> <%= link_to("My Projects", account_projects_path) %></li>
               <li> <%= link_to("My Todos", account_todos_path) %></li>
+              <li> <%= link_to("动态", account_events_path) %></li>
                               <% if !current_user %>
                                 <li><%= link_to("注册", new_user_registration_path) %> </li>
                                 <li><%= link_to("登录", new_user_session_path) %></li>

@@ -2,6 +2,7 @@
   <%= simple_form_for [@team,@project,@todo] do |f| %>
     <div class="form-group">
       <%= f.input :title, input_html: { class: "form-control"} %>
+      <%#= f.select :user_id, [1,2,3] %>
     </div>
     <div class="form-actions">
       <%= f.submit "Submit", disable_with: "Submiting...", class: "btn btn-primary"%>
