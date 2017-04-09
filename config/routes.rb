@@ -13,11 +13,11 @@ Rails.application.routes.draw do
         patch :edeadline_update
         resources :comments
       end
-    end
 
-    member do
-      post :join
-      post :quit
+      member do
+        post :join
+        post :quit
+      end
     end
   end
 

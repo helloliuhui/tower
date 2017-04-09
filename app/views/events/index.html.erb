@@ -6,9 +6,8 @@
     <thead>
       <tr>
         <th>  </th>
-        <th> user </th>
-        <th> status </th>
-        <th> title </th>
+        <th> 事件创建者 </th>
+        <th> 状态 </th>
       </tr>
     </thead>
 
@@ -20,11 +19,12 @@
           <td>
             <% case event.aasm_state %>
               <% when "created" %>
-                <span class="label label-default">创建了任务</span>
+                <span class="label label-default">创建了任务：<%= event.title %></span>
+
               <% when "deleted" %>
-                <span class="label label-default">删除了任务</span>
+                <span class="label label-default">删除了任务：<%= event.title %></span>
               <% when "finished" %>
-                <span class="label label-default">完成了任务</span>
+                <span class="label label-default">完成了任务：<%= event.title %></span>
               <% when "assigned" %>
                 <span class="label label-default">指派了</span>
               <% when "updated" %>
@@ -33,12 +33,9 @@
                 <span class="label label-default">回复了任务:</span>
                 <br>
                 <span><%= event.comment_content %></span>
-
              <% end %>
 
-
            </td>
-          <td> <%= link_to(event.title, event_path(event)) %></td>
         </tr>
       <% end %>
     </tbody>

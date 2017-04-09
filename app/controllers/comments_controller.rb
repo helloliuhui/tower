@@ -30,6 +30,39 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+    @team = Team.find(params[:team_id])
+    @project = Project.find(params[:project_id])
+    @todo = Todo.find(params[:todo_id])
+    @comment = Comment.find(params[:id])
+  end
+
+  def update
+    @team = Team.find(params[:team_id])
+    @project = Project.find(params[:project_id])
+    @todo = Todo.find(params[:todo_id])
+    @comment = Comment.find(params[:id])
+
+    if @comment.update(comment_params)
+      redirect_to team_project_todo_path(@team, @project, @todo), notice: "更新成功"
+    else
+      render :destroy
+    end
+  end
+
+  def destroy
+    @team = Team.find(params[:team_id])
+    @project = Project.find(params[:project_id])
+    @todo = Todo.find(params[:todo_id])
+    @comment = Comment.find(params[:id])
+
+    if @comment.destroy
+      redirect_to team_project_todo_path(@team, @project, @todo), notice: "删除成功"
+    else
+      render :destroy
+    end
+  end
+
   private
 
   def comment_params

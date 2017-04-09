@@ -1,16 +1,5 @@
 <div class="col-md-12">
   <div class="group">
-
-    <span class="pull-right">
-      <% if current_user && current_user.is_member_of?(@team) %>
-        <label class="label label-success"> 团队成员 </label>
-        <%= link_to("Quit Team", quit_team_path(@team), method: :post, class: "btn btn-default") %>
-      <% else %>
-        <label class="label label-warning"> 不是团队成员 </label>
-        <%= link_to("Join Team", join_team_path(@team), method: :post, class: "btn btn-default") %>
-      <% end %>
-    </span>
-
     <% if current_user && current_user == @team.user %>
     <%= link_to("Edit", edit_team_path(@team), class: "btn btn-primary pull-right")%>
     <% end %>
@@ -33,7 +22,7 @@
       <tbody>
         <% @projects.each do |project| %>
           <tr>
-            <td><%= link_to(project.title, team_project_path(project)) %></td>
+            <td><%= link_to(project.title, team_project_path(@team, project)) %></td>
             <td><%= project.user.email %></td>
             <td><%= project.created_at %></td>
             <td> <%= link_to('Edit', edit_team_project_path(project.team, project), class: "btn btn-default btn-xs") %></td>

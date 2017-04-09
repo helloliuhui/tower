@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user! , only: [:new, :create, :edit, :update, :destroy]
+  before_action :find_project_and_check_permission, only: [:edit, :update, :destroy, :show]
 
   def new
     @team = Team.find(params[:team_id])
@@ -13,6 +14,7 @@ class ProjectsController < ApplicationController
     @project.team = @team
 
     if @project.save
+      current_user.join!(@project)
       redirect_to team_path(@team)
     else
       render :new
@@ -43,7 +45,8 @@ class ProjectsController < ApplicationController
   def show
     @team = Team.find(params[:team_id])
     @project = Project.find(params[:id])
-    @todos = @project.todos
+    @todos = @project.todos.where(:is_finished => false)
+    @num = @project.accesses.count
   end
 
   def join
@@ -66,5 +69,14 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(:title)
+  end
+
+  def find_project_and_check_permission
+    @team = Team.find(params[:team_id])
+    @project = Project.find(params[:id])
+
+    if current_user != @project.user
+      redirect_to team_project_path(@team, @project), alert: "You have no permission"
+    end
   end
 end

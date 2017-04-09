@@ -43,21 +43,6 @@ class TeamsController < ApplicationController
     @projects = @team.projects.recent
   end
 
-  def join
-    @team = Team.find(params[:id])
-    current_user.join!(@team)
-
-    redirect_to team_path(@team)
-  end
-
-  def quit
-    @team = Team.find(params[:id])
-      current_user.quit!(@team)
-
-    redirect_to team_path(@team)
-  end
-
-
   private
 
   def team_params

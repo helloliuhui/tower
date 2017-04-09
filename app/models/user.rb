@@ -10,26 +10,20 @@ class User < ApplicationRecord
   has_many :comments
   has_many :events
 
-  has_many :team_relationships
-  has_many :participated_teams, :through => :team_relationships, :source => :team
-
   has_many :accesses
   has_many :participated_projects, :through => :accesses, :source => :project
 
-  def is_member_of?(team)
-    participated_teams.include?(team)
-  end
-
-  def join!(team)
-    participated_teams << team
-  end
-
-  def quit!(team)
-    participated_teams.delete(team)
-  end
 
   def is_member_of?(project)
     participated_projects.include?(project)
+  end
+
+  def join!(project)
+    participated_projects << project
+  end
+
+  def quit!(project)
+    participated_projects.delete(project)
   end
 
 end

@@ -1,24 +1,19 @@
 <div class="col-md-12">
   <div class="group">
     <span class="pull-right">
-      <% if current_user && current_user.is_member_of?(@project) %>
-        <label class="label label-success"> 项目组成员 </label>
-      <% else %>
-        <label class="label label-warning"> 项目组成员 </label>
-      <% end %>
+        <label class="label label-success"> 成员：<%= @num %> </label>
+        <%= link_to("设置", edit_team_project_path(@team, @project), class: "btn btn-primary pull-right")%>
     </span>
-
-    <% if current_user && current_user == @project.user %>
-    <%= link_to("Edit", edit_team_project_path(@project), class: "btn btn-primary pull-right")%>
-    <% end %>
-    <%= link_to("New Todo", new_team_project_todo_path(@team, @project), class: "btn btn-default pull-right")%>
   </div>
 
 
   <h2><%= @project.title %></h2>
 
+   <hr>
   <table class="table">
     <thead>
+      <div><%= link_to("添加任务", new_team_project_todo_path(@team, @project), class: "btn btn-default")%></div>
+      <br>
      <tr>
         <th>任务名称</th>
         <th>创建者</th>
