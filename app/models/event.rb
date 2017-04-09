@@ -8,8 +8,7 @@ class Event < ApplicationRecord
       state :deleted
       state :finished
       state :assigned
-      state :update_finisher
-      state :update_deadline
+      state :updated
       state :commented
 
       event :create_todo! do
@@ -24,12 +23,8 @@ class Event < ApplicationRecord
         transitions from: :created,     to: :finished
       end
 
-      event :update_finisher! do
-        transitions from: :created,      to: :update_finisher
-      end
-
-      event :update_deadline! do
-        transitions from: :update_finisher,      to: :update_deadline
+      event :update_todo! do
+        transitions from: :created,      to: :updated
       end
 
       event :comment_todo do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170408121004) do
+ActiveRecord::Schema.define(version: 20170409053308) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer  "user_id"
@@ -30,10 +30,12 @@ ActiveRecord::Schema.define(version: 20170408121004) do
   create_table "events", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "todo_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "title"
     t.string   "aasm_state"
+    t.text     "content"
+    t.text     "comment_content"
     t.index ["aasm_state"], name: "index_events_on_aasm_state"
   end
 

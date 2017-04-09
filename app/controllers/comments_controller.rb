@@ -21,6 +21,7 @@ class CommentsController < ApplicationController
       @event.todo_id = @todo.id
       @event.title = @todo.title
       @event.user = current_user
+      @event.comment_content = @comment.content
       @event.comment_todo!
       @event.save
       redirect_to team_project_todo_path(@team, @project, @todo), notice: "创建成功"

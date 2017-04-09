@@ -48,14 +48,7 @@ class TodosController < ApplicationController
       @event.todo_id = @todo.id
       @event.title = @todo.title
       @event.user = current_user
-      if @todo.finisher != params[:finisher]
-        @event.update_finisher!
-      end
-
-      if @todo.deadline != params[:deadline]
-        @event.update_deadline!
-      end
-
+      @event.update_todo!
       @event.save
       redirect_to team_project_path(@team, @project), notice: "更新成功"
     else
@@ -79,7 +72,6 @@ class TodosController < ApplicationController
     else
       render :new
     end
-
   end
 
   def show
@@ -105,7 +97,34 @@ class TodosController < ApplicationController
     else
       render :new
     end
+  end
 
+  def efinisher
+    @team = Team.find(params[:team_id])
+    @project = Project.find(params[:project_id])
+    @todo = Todo.find(params[:todo_id])
+  end
+
+  def efinisher_update
+    @team = Team.find(params[:team_id])
+    @project = Project.find(params[:project_id])
+    @todo = Todo.find(params[:id])
+
+    @todo.user = current_user
+    @todo.project = @project
+    @todo.team = @team
+
+    if @todo.update(todo_params)
+      @event = Event.new
+      @event.todo_id = @todo.id
+      @event.title = @todo.title
+      @event.user = current_user
+      @event.update_finisher!
+      @event.save
+      redirect_to team_project_path(@team, @project), notice: "修改了任务完成者"
+    else
+      render :new
+    end
   end
 
   private

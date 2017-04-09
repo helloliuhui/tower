@@ -7,6 +7,10 @@ Rails.application.routes.draw do
       resources :todos do
         get :finish
         get :unfinish
+        get :efinisher
+        patch :efinisher_update
+        get :edeadline
+        patch :edeadline_update
         resources :comments
       end
     end

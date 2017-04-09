@@ -27,14 +27,16 @@
                 <span class="label label-default">完成了任务</span>
               <% when "assigned" %>
                 <span class="label label-default">指派了</span>
-              <% when "update_finisher" %>
-                <span class="label label-default">修改了任务完成者</span>
-              <% when "update_deadline" %>
-                <span class="label label-default">修改了任务完成时间</span>
+              <% when "updated" %>
+                <span class="label label-default">修改了任务</span>
               <% when "commented" %>
-                <span class="label label-default">评论了任务</span>
+                <span class="label label-default">回复了任务:</span>
+                <br>
+                <span><%= event.comment_content %></span>
 
              <% end %>
+
+
            </td>
           <td> <%= link_to(event.title, event_path(event)) %></td>
         </tr>
